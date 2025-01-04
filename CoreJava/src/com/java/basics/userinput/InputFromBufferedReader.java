@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 // Buffered Reader reads input line by line and, it is efficient for large inputs.
-// Buffered Readers are not too thread safe.
+// Buffered Readers are not thread safe.
 // Here we have to manually parse the data in scanner the data is parse automatically.
 // Buffered reader throws IOException.
 public class InputFromBufferedReader {
