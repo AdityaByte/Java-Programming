@@ -14,7 +14,7 @@ else{
 // Body
 }
  */
-public class ElseIfCondition {
+public class IfElseIfLadder {
     public static void main(String[] args) {
         int a = 0;
         int b = -1;
