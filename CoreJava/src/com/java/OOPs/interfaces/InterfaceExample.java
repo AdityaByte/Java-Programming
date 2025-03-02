@@ -18,6 +18,8 @@ package com.java.OOPs.interfaces;
  * - Syntax : interface InterfaceName and the class which implements it Syntax: class ClassName implements InterfaceName
  */
 
+ // Note - In interface by default all the fields are public static and final.
+
 interface Vehicle {
     // This is public and abstract by default 
     void start();
