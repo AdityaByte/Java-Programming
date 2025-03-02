@@ -40,5 +40,34 @@ public class SwitchCase {
                 System.out.println("I don't know about any day...");
                 break;
         }
+
+        // After the version of java12 we don't need to write the break statment explicitly 
+
+        String data = "WEDNESDAY";
+
+        switch (data) {
+            case "MONDAY" -> {
+                System.out.println("MONDAY"); // In this syntax we don't need to write the break statement.
+            }
+            case "TUESDAY" -> {
+                System.out.println("TUESDAY");
+            }
+            default -> {
+                System.out.println("WEEKEND");
+            }
+        }
+
+        // There is an other syntax which come in java 12 where we can return out the values.
+
+        String months = "JAN";
+
+        String monthResult = switch (months) {
+            case "JAN" -> "Month is january";
+            case "FEB" -> "Month is februrary";
+            // Here we have to handle all case or we can write the default case if you're dealing with enums or all.
+            default -> "Month is not in data";
+        };
+
+        System.out.println(monthResult);
     }
 }
