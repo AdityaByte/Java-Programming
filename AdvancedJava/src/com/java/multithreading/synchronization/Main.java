@@ -7,6 +7,13 @@ package com.java.multithreading.synchronization;
  * this situation is known as the race condition in multithreading.
  * -> To overcome this issue we have to synchronized the operation that are using the shared resource
  * this can be done by making the method synchronized and by using the synchronized block.
+ * 
+ * Note : 
+ * # Critical Section : The part of the program in which we works on the shared resource
+ * is the critical section of the program.
+ * 
+ * # Race condition : When multiple threads works on a shared resource then due to the relative timing 
+ * of the threads we get unpredictable result then this condition is called as Race Condition.
  */
 
 public class Main {
