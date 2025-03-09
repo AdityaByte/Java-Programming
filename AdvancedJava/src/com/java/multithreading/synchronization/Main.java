@@ -14,6 +14,11 @@ package com.java.multithreading.synchronization;
  * 
  * # Race condition : When multiple threads works on a shared resource then due to the relative timing 
  * of the threads we get unpredictable result then this condition is called as Race Condition.
+ * 
+ * # Mutual Exclusion : When multiple threads are working on a shared resource only one thread can read or write at 
+ * a time this case is known as mutual exclusion. This ensures that multiple threads do not work on a critical section simultaneouly.
+ * -> Mutual means relationship between threads.
+ * -> Exclusion means preventing them to access the shared resource simutaneouly.
  */
 
 public class Main {
