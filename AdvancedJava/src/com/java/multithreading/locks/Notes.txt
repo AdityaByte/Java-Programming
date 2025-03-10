@@ -1,0 +1,21 @@
+Locks in Java - 
+There are two types of locks in Java
+1. Intrinsic
+2. Explicit
+
+1. Intrinsic : These are built into every object in java.
+    you don't see them, but they are there. When you use a synchronized keyword,
+    you're using these automatic locks.
+
+2. Explicit : These are more advanced locks you can control yourself using the Lock class
+    from java.util.concurrent.locks. you explicitly say when to lock and unlock,
+    giving you more control over how and when people can write in the notebook (Notebook as an example.)
+
+Advantages of using the manual locking technique or explicit locks over synchronized way :
+1. fairness - fairness means it will maintain the order of FIFO and it checks out all the threads are being processed 
+without ignoring any of the one.
+2. Indefinately blocking is not happened in it since it happens in the Synchronized way.
+3. Interruptibility can be happened in the manual locking technique since it doesn't happen in the synchronized way cause
+it is the automatic way.
+4. Read/write locking is possible in manual locking in synchronized way it doesn't know about which document is read or which 
+one is write.
