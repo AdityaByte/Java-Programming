@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Websocket example test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.js"
+        integrity="sha512-aHuAnb+FZ/yM5zYvdiA8q0sxLdsBQ3PRwO8D/08qsenCLQ2gWsosB43Cn1X8esAz0IpaC7Ns5cAPyKIdJQ0hNw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"
+        integrity="sha512-1QvjE7BtotQjkq8PxLeF6P46gEpBRXuskzIVgjFpekzFVF4yjRgrQvTG1MTOJ3yQgvTteKAcO7DSZI92+u/yZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
+        integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"
+        integrity="sha512-tL4PIUsPy+Rks1go4kQG8M8/ItpRMvKnbBjQm4d2DQnFwgcBYRRN00QdyQnWSCwNMsoY/MfJY8nHp2CzlNdtZA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <!--Here we have a button so  when we click on that button we trigger a event and a fetch request to the websocket
+server ok the data which we are sending is just a dummy data (hardcoded values)-->
+    <button id="connBtn">Create connection</button>
+</body>
+<script>
+    document.querySelector("#connBtn").addEventListener("click", (e) => {
+        e.preventDefault();
+        const backendURL = "http://localhost:8080/ws"
+        const socket = new SockJS(backendURL)
+        const stompClient = Stomp.over(socket)
+
+        stompClient.connect({}, () => {
+            console.log("Connected to the websocket")
+
+            stompClient.subscribe("topic/first", (message) => {
+                console.log("Recieved ", message.body);
+            })
+
+            stompClient.send("/app/firstmsg", {}, JSON.stringify({
+                username: "adityapawar",
+                role: "ADMIN",
+                status: "ONLINE",
+            }))
+        }, function(error) {
+            console.log(error)
+        })
+
+        socket.onClose = (e) => {
+            console.error("websocket closed:", e)
+        }
+    }, false)
+</script>
+
+</html>
