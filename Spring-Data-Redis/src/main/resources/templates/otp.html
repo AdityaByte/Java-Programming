@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>OTP page</title>
+</head>
+<body class="bg-red-500 text-white h-screen w-screen flex flex-col justify-center items-center gap-10">
+    <h1 class="text-2xl">OTP page</h1>
+    <form class="flex flex-col gap-3 justify-center items-center" th:action="@{/auth/submit-otp}" method="POST" th:object="${otp}">
+        <input placeholder="OTP" class="px-4 py-2" type="text" th:field="*{otp}">
+        <input type="hidden" th:field="*{targetIdentifier}">
+        <button class="rounded px-4 py-2 font-bold text-white bg-green-300 hover:bg-green-400 active:bg-green-200" type="submit">Submit otp</button>
+    </form>
+</body>
+</html>
