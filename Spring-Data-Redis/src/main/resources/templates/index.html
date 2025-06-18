@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>HomePage</title>
+</head>
+<body class="bg-red-500 text-white h-screen w-screen flex flex-col justify-center items-center gap-10">
+    <h1 class="text-2xl">Signup page</h1>
+    <form id="signup-form" class="flex flex-col gap-3 justify-center items-center" th:action="@{/auth/signup}" th:object="${user}" method="POST">
+        <input id="username" class="px-4 py-2 bg-green-900/60 rounded" type="text" th:field="*{username}" placeholder="username"><br>
+        <input class="px-4 py-2 bg-green-900/60 rounded" type="password" th:field="*{password}" placeholder="password"><br>
+        <button class="rounded px-4 py-2 font-bold text-white bg-green-300 hover:bg-green-400 active:bg-green-200" type="submit">Signup</button>
+    </form>
+</body>
+</html>
