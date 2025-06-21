@@ -1,5 +1,6 @@
 package com.kafka_demo.consumer;
 
+import com.kafka_demo.dto.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -38,5 +39,13 @@ public class KafkaMessageListener {
     @KafkaListener(topics = "aditya", groupId = "group-1")
     public void consumer4(String message) {
         log.info("[consumer4] Consumed message: {}", message);
+    }
+
+    // Here creating another listener which listens for another topic.
+    // topic : aditya-object
+    // So creating a topic which listens for the object.
+    @KafkaListener(topics = "aditya-object", groupId = "group-1")
+    public void objectConsumer(Customer customer) {
+        log.info("Consumed object: {}", customer.toString());
     }
 }
