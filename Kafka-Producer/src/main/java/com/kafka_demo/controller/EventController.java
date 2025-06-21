@@ -1,5 +1,6 @@
 package com.kafka_demo.controller;
 
+import com.kafka_demo.dto.Customer;
 import com.kafka_demo.service.KafkaMessagePublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,4 +44,17 @@ public class EventController {
                     .build();
         }
     }
-}
+
+    @PostMapping
+    public ResponseEntity<?> publishObject(@RequestBody Customer customer) {
+        try {
+            messagePublisher.sendEventToTopic(customer);
+            return ResponseEntity.ok("Object sent successfully");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .build();
+        }
+    }
+ }
