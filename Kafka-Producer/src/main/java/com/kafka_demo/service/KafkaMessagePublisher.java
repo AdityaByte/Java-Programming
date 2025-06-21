@@ -1,5 +1,6 @@
 package com.kafka_demo.service;
 
+import com.kafka_demo.dto.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,19 @@ public class KafkaMessagePublisher {
                 log.info("Sent Message=[{}] with offset=[{}] and with Partition=[{}]", message, result.getRecordMetadata().offset(), result.getRecordMetadata().partition());
             } else {
                 log.error("Unable to send message=[{}] due to: [{}]", message, exception.getMessage());
+            }
+        });
+    }
+
+    // For sending the object you need to explicit set the key-serializer and the value-serializer.
+    // Same in the consumer you need to tell the same key-deserializer and value-deserializer.
+    public void sendEventToTopic(Customer customer) {
+        CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send("aditya-object", customer);
+        future.whenComplete((result, exception) -> {
+            if (exception != null) {
+                log.info("Sent Object: {} with offset=[{}]", customer.toString(), result.getRecordMetadata().offset());
+            } else {
+                log.error("Unable to send message=[{}] due to: [{}]", customer.toString(), exception.getMessage());
             }
         });
 
