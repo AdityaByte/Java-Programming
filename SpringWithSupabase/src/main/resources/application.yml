@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: SpringWithSupabaseApplication
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SUPABASE_JDBC_URL}
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+supabase:
+  api:
+    url: ${SUPABASE_URL}
+    servicekey: ${SUPABASE_SERVICE_KEY}
