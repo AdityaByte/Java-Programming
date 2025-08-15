@@ -1,0 +1,59 @@
+# Build output directories
+/target/
+/build/
+
+# Maven and Gradle wrapper files
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# User-specific files
+*.iml
+*.iws
+*.idea/
+/*.ipr
+
+# Eclipse files
+.metadata/
+*.classpath
+*.project
+.settings/
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+out/
+
+# VS Code files
+.vscode/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Compiled class files
+*.class
+
+# Packaging files
+*.jar
+*.war
+*.ear
+
+# Spring Boot specific
+spring.log
+
+# Application properties with sensitive info (optional, customize as needed)
+/src/main/resources/application-local.properties
+/src/main/resources/application-secrets.properties
+
+# Others
+*.jks
+*.keystore

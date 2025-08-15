@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: SpringPaymentApplication
+
+stripe:
+  secretKey: ${STRIPE_SECRET_KEY}

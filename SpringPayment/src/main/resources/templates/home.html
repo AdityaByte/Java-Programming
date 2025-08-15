@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="container h-screen w-screen bg-green-100 flex flex-col items-center justify-evenly">
+        <h1 class="text-3xl font-bold">Shop from here</h1>
+        <div class="items p-10 flex w-full gap-10 flex-wrap justify-center items-center">
+            <div class="card flex flex-col items-center bg-green-400 px-4 py-10 rounded-md gap-2"
+                th:each="product: ${products}">
+                <span class="font-bold text-xl capitalize" th:text="${product.name}"></span>
+                <span class="font-italic" th:text="${product.amount} + ' '+ ${product.currency}"></span>
+                <button
+                    th:attr="data-name=${product.name}, data-amount=${product.amount}, data-currency=${product.currency}"
+                    class="btn bg-green-600 rounded-md p-2 font-bold text-white hover:bg-green-500 active:bg-green-800">
+                    Purchase
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.querySelectorAll(".btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            purchaseProduct(btn.dataset.name, parseFloat(btn.dataset.amount), btn.dataset.currency)
+        })
+    })
+
+    function purchaseProduct(name, amount, currency) {
+        // Here we need to send the request the endpoint.
+        backendURL = "http://localhost:8080/product/v1/checkout"
+        fetch(backendURL, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({
+                name: name,
+                amount: amount,
+                currency: currency,
+                quantity: 1,
+            })
+        })
+            .then(async response => {
+                const data = await response.json()
+                if (!response.ok) {
+                    console.log(response)
+                    console.log(data)
+                    throw new Error(data)
+                    return
+                }
+                console.log(response)
+                console.log(typeof data, data)
+                window.location.href = data["sessionUrl"]
+            })
+            .catch(error => {
+                console.error(error.message)
+            })
+    }
+</script>
+
+</html>
